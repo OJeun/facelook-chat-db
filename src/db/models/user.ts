@@ -49,7 +49,7 @@ export function initUser(sequelize:
       engine: 'InnoDB',
       charset: 'utf8',
       freezeTableName: true,
-      indexes: [{ fields: ['user_id'] }],
+      indexes: [{ fields: ['userId'] }],
       hooks: {
         beforeCreate: (user) => {
           const salt = bcrypt.genSaltSync();

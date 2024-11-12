@@ -1,8 +1,8 @@
 import { Sequelize } from 'sequelize';
 import config from './config/config';
 import dotenv from 'dotenv';
-import { initUser } from '../models/user';
-import { initFriend } from './models/Friend';
+import { initUser } from './models/user';
+import { initFriend } from './models/friend';
 import { initRoom } from './models/Room';
 import { initParticipant } from './models/userGroup';
 import { initChatting } from './models/Chatting';
