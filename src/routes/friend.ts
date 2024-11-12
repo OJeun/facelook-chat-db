@@ -7,3 +7,5 @@ const router = express.Router();
 router.get('/:id', asyncHandler(getAllFriends));
 router.post('/add', asyncHandler(addFriend));
 router.post('/delete', asyncHandler(deleteFriend));
+
+export default router;
