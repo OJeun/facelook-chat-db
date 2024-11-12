@@ -3,9 +3,9 @@ import config from './config/config';
 import dotenv from 'dotenv';
 import { initUser } from './models/user';
 import { initFriend } from './models/friend';
-import { initRoom } from './models/Room';
-import { initParticipant } from './models/userGroup';
-import { initChatting } from './models/Chatting';
+import { initGroup } from './models/group';
+import { initUserGroup } from './models/userGroup';
+import { initChat } from './models/chat';
 import setupAssociations from './associations';
 
 dotenv.config();
@@ -25,9 +25,9 @@ export function init(): Sequelize {
 
   initUser(sequelize);
   initFriend(sequelize);
-  initRoom(sequelize);
-  initParticipant(sequelize);
-  initChatting(sequelize);
+  initGroup(sequelize);
+  initUserGroup(sequelize);
+  initChat(sequelize);
 
   setupAssociations();
 
