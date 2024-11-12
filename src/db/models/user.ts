@@ -2,8 +2,7 @@ import { DataTypes, Sequelize, Model } from 'sequelize';
 import bcrypt from 'bcrypt';
 
 export class User extends Model {
-  public id!: number;
-  public userId!: string;
+  public userId!: number;
   public email!: string;
   public password!: string;
   public name!: string;
@@ -14,15 +13,10 @@ export function initUser(sequelize:
     Sequelize): void {
     User.init(
         {
-        id: {
+        userId: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
-        },
-        userId: {
-            type: DataTypes.STRING(30),
-            allowNull: false,
-            unique: true,
         },
         email: {
             type: DataTypes.STRING(30),
@@ -49,7 +43,6 @@ export function initUser(sequelize:
       engine: 'InnoDB',
       charset: 'utf8',
       freezeTableName: true,
-      indexes: [{ fields: ['userId'] }],
       hooks: {
         beforeCreate: (user) => {
           const salt = bcrypt.genSaltSync();
