@@ -3,4 +3,9 @@ export interface FriendResponseDto {
     name: string,
     email: string,
 }
-    
+
+export interface InvitationResponseDto {
+    invitationId: number,
+    senderName: string,
+    groupName: string,
+}
