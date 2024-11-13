@@ -6,20 +6,23 @@ import { initFriend } from './models/friend';
 import { initGroup } from './models/group';
 import { initUserGroup } from './models/userGroup';
 import { initChat } from './models/chat';
+import { initInvitation } from './models/invitation';
 import setupAssociations from './associations';
 
 dotenv.config();
 
 export function init(): Sequelize {
+  const envConfig = process.env.NODE_ENV === 'production' ? config.production : config.development;
+
   const sequelize = new Sequelize(
-    config.development.database,
-    config.development.username,
-    config.development.password,
+    envConfig.database,
+    envConfig.username,
+    envConfig.password,
     {
-      host: config.development.host,
-      dialect: config.development.dialect,
-      port: config.development.port,
-      timezone: config.development.timezone,
+      host: envConfig.host,
+      dialect: envConfig.dialect,
+      port: envConfig.port,
+      timezone: envConfig.timezone,
     }
   );
 
@@ -28,6 +31,7 @@ export function init(): Sequelize {
   initGroup(sequelize);
   initUserGroup(sequelize);
   initChat(sequelize);
+  initInvitation(sequelize);
 
   setupAssociations();
 
