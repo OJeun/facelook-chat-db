@@ -2,7 +2,7 @@ import { DataTypes, Sequelize, Model } from 'sequelize';
 
 export class Invitation extends Model {
   public invitationId!: number;
-  public userId!: string;
+  public receiverId!: string;
   public senderId!: string;
   public groupId!: number;
 }
@@ -15,12 +15,12 @@ export function initInvitation(sequelize: Sequelize): void {
         autoIncrement: true,
         primaryKey: true,
       },
-      userId: {
-        type: DataTypes.STRING(30),
+      receiverId: {
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       senderId: {
-        type: DataTypes.STRING(30),
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       groupId: {
