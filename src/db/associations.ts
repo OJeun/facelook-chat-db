@@ -35,7 +35,7 @@ export default function setupAssociations(): void {
   Chat.belongsTo(Group, { foreignKey: "groupId" });
 
   // Define inverse relationships for Invitation
-  Invitation.belongsTo(User, { foreignKey: "userId", as: "invitee" });
+  Invitation.belongsTo(User, { foreignKey: "receiverId", as: "invitee" });
   Invitation.belongsTo(User, { foreignKey: "senderId", as: "inviter" });
   Invitation.belongsTo(Group, { foreignKey: "groupId", as: "invitedGroup" });
 }
