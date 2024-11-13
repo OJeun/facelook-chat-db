@@ -13,6 +13,7 @@ interface DBConfig {
     dialect: Dialect;
     use_env_variable?: string; 
     timezone?: string;
+    secret: string;
   };
 }
 
@@ -26,6 +27,7 @@ const config: DBConfig = {
     port: Number(process.env.DB_PORT) || 3306,
     dialect: (process.env.DB_DIALECT as Dialect) || 'mysql',
     timezone: process.env.DB_TIMEZONE || '+09:00',
+    secret: process.env.JWT_SECRET || 'secret-key',
   },
   test: {
     username: process.env.DB_USER || 'root',
@@ -35,6 +37,7 @@ const config: DBConfig = {
     port: Number(process.env.DB_PORT) || 3306,
     dialect: (process.env.DB_DIALECT as Dialect) || 'mysql',
     timezone: process.env.DB_TIMEZONE || '+09:00',
+    secret: process.env.JWT_SECRET || 'secret-key',
   },
   production: {
     use_env_variable: process.env.DB_CONNECTION_STRING,
@@ -45,6 +48,7 @@ const config: DBConfig = {
     port: Number(process.env.DB_PORT) || 3306,
     dialect: (process.env.DB_DIALECT as Dialect) || 'mysql',
     timezone: process.env.DB_TIMEZONE || '+09:00',
+    secret: process.env.JWT_SECRET || 'secret-key',
   },
 };
 
