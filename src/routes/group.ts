@@ -6,3 +6,5 @@ const router = express.Router();
 
 router.get('/list/:id', asyncHandler(getGroupListByUserId));
 router.get('/message/:id', asyncHandler(getLastMessageByGroupId));
+
+export default router;

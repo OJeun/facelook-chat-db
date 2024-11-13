@@ -8,3 +8,4 @@ router.get('/allChats/:id', asyncHandler(getAllChatsByGroupId));
 router.get('/20Chats/:id', asyncHandler(get20ChatsByGroupId));
 router.post('/saveChats', asyncHandler(saveChatMessages));
 
+export default router;
