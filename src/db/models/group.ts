@@ -21,7 +21,7 @@ export function initGroup(sequelize: Sequelize): void {
       lastChatId: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        defaultValue: null,
+        defaultValue: 0,
       },
     },
     {
