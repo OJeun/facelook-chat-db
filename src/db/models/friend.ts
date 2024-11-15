@@ -15,11 +15,11 @@ export function initFriend(sequelize: Sequelize): void {
         primaryKey: true,
       },
       userId: {
-        type: DataTypes.STRING(30),
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       friendId: {
-        type: DataTypes.STRING(30),
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
     },
