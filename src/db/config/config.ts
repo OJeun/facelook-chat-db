@@ -19,7 +19,6 @@ interface DBConfig {
 
 const config: DBConfig = {
   development: {
-    use_env_variable: process.env.DB_CONNECTION_STRING, 
     username: process.env.DB_USER || 'root',
     password: process.env.DB_PASSWORD || 'password',
     database: process.env.DB_NAME || 'database_name',

@@ -12,17 +12,21 @@ import setupAssociations from './associations';
 dotenv.config();
 
 export function init(): Sequelize {
+  console.log('process.env', process.env);
   const envConfig = process.env.NODE_ENV === 'production' ? config.production : config.development;
 
+
+  console.log('envConfig is', config.development);
+
   const sequelize = new Sequelize(
-    envConfig.database,
-    envConfig.username,
-    envConfig.password,
+    process.env.DB_NAME || 'default_db_name',
+    process.env.DB_USER || envConfig.username,
+    process.env.DB_PASSWORD || envConfig.password,
     {
-      host: envConfig.host,
-      dialect: envConfig.dialect,
-      port: envConfig.port,
-      timezone: envConfig.timezone,
+      host: process.env.DB_HOST || envConfig.host,
+      dialect: 'mysql',
+      port: Number(process.env.DB_PORT) || envConfig.port,
+      timezone: process.env.DB_TIMEZONE || envConfig.timezone,
     }
   );
 
@@ -35,5 +39,15 @@ export function init(): Sequelize {
 
   setupAssociations();
 
+  sequelize.sync({ force: true }) // Use `force: true` only in development
+  .then(() => {
+    console.log("All models were synchronized successfully.");
+  })
+  .catch((err) => {
+    console.error("Error syncing models:", err);
+  });
+
   return sequelize;
 }
+
+
