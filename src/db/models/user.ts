@@ -32,7 +32,7 @@ export function initUser(sequelize:
             allowNull: false,
         },
         achievementPoint: {
-            type: DataTypes.NUMBER,
+            type: DataTypes.FLOAT,
             allowNull: false,
             defaultValue: 0,
         },
