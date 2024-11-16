@@ -3,7 +3,7 @@ import { DataTypes, Sequelize, Model } from 'sequelize';
 export class Group extends Model {
   public groupId!: number;
   public groupName!: string;
-  public lastChatId!: number | null;
+  public lastChatId!: number;
 }
 
 export function initGroup(sequelize: Sequelize): void {
@@ -27,6 +27,7 @@ export function initGroup(sequelize: Sequelize): void {
     {
       sequelize,
       tableName: 'group',
+      timestamps: false,
       engine: 'InnoDB',
       charset: 'utf8',
       freezeTableName: true,
