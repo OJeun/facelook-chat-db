@@ -8,7 +8,7 @@ export async function register(req: Request, res: Response) {
 }
 
 export async function login(req: Request, res: Response) {
-  const { username, password } = req.body;
-  const token = await loginUser(username, password);
+  const { email, password } = req.body;
+  const token = await loginUser(email, password);
   return res.json({ message: 'Login successful', token });
 }
