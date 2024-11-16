@@ -31,7 +31,7 @@ export async function loginUser(email: string, password: string) {
     throw new Error("Invalid password!");
   }
 
-  const secret = config.development.secret;
+  const secret = process.env.JWT_SECRET || 'default_secret';
   const token = jwt.sign({ id: user.userId }, secret, { 
     expiresIn: 86400,});
   return token;
