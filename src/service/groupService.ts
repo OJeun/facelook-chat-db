@@ -1,6 +1,5 @@
 import { Group } from "../db/models/group";
 import { UserGroup } from "../db/models/userGroup";
-import { User } from "../db/models/user";
 import { Chat } from "../db/models/chat";
 
 // Return all group names that the user is in
@@ -39,4 +38,10 @@ export async function getLastMessageByGroupId(groupId: number) {
   }
   const chat = group.get("lastChat") as Chat;
   return chat.get("message") as string;
+}
+
+export async function createGroup(name: string) {
+  console.log("Name in createGroup", name);
+  const group = await Group.create({ groupName: name });
+  return group;
 }
