@@ -12,12 +12,7 @@ import setupAssociations from './associations';
 dotenv.config();
 
 export function init(): Sequelize {
-  console.log('process.env', process.env);
   const envConfig = process.env.NODE_ENV === 'production' ? config.production : config.development;
-
-
-  console.log('envConfig is', config.development);
-
   const sequelize = new Sequelize(
     process.env.DB_NAME || 'default_db_name',
     process.env.DB_USER || envConfig.username,
@@ -39,7 +34,7 @@ export function init(): Sequelize {
 
   setupAssociations();
 
-  sequelize.sync({ force: true }) // Use `force: true` only in development
+  sequelize.sync( {alter: true} ) // Use `force: true` only in development
   .then(() => {
     console.log("All models were synchronized successfully.");
   })
