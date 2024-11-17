@@ -1,4 +1,9 @@
 {
+  "name": "comp4977db",
+  "version": "1.0.0",
+  "scripts": {
+    "migrate": "NODE_OPTIONS='--loader ts-node/esm' sequelize-cli db:migrate --config src/db/config/config.ts --migrations-path src/db/migrations --models-path src/db/models"
+  },
   "dependencies": {
     "@types/node": "^22.9.0",
     "@types/sequelize": "^4.28.20",
@@ -11,13 +16,13 @@
     "mysql2": "^3.11.4",
     "sequelize": "^6.37.5",
     "sequelize-cli": "^6.6.2",
-    "ts-node": "^10.9.2",
     "typescript": "^5.6.3"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
-    "@types/jsonwebtoken": "^9.0.7"
+    "@types/jsonwebtoken": "^9.0.7",
+    "ts-node": "^10.9.2"
   }
 }
