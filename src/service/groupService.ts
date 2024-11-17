@@ -10,15 +10,18 @@ export async function getGroupListByUserId(userId: number) {
       {
         model: Group,
         as: "group",
-        attributes: ["name"],
+        attributes: ["groupId", "groupName"],
       },
     ],
   });
   const response = userGroups.reduce((acc, curr) => {
     const group = curr.get("group") as Group;
-    acc.push(group.get("name") as string);
+    const groupId = group.get("groupId");
+    const groupName = group.get("groupName");
+    const groupInfo = { groupId, groupName };
+    acc.push(groupInfo);
     return acc;
-  }, [] as string[]);
+  }, [] as { groupId: number; groupName: string }[]);
   return response;
 }
 
@@ -28,7 +31,7 @@ export async function getLastMessageByGroupId(groupId: number) {
     include: [
       {
         model: Chat,
-        as: "lastChat",
+        as: "groupMessages", 
         attributes: ["message"],
       },
     ],
@@ -36,12 +39,21 @@ export async function getLastMessageByGroupId(groupId: number) {
   if (!group) {
     throw new Error("Group not found");
   }
-  const chat = group.get("lastChat") as Chat;
-  return chat.get("message") as string;
+
+  const chats = group.get("groupMessages") as Chat[];
+  if (chats.length === 0) {
+    throw new Error("No messages found in this group");
+  }
+
+  const lastChat = chats[chats.length - 1];
+  return lastChat.get("message") as string;
 }
 
-export async function createGroup(name: string) {
+
+export async function createGroup(name: string, creatorId: number) {
   console.log("Name in createGroup", name);
-  const group = await Group.create({ groupName: name });
+  const group = await Group.create({ groupName: name, userId: creatorId });
+  // Add the user to UserGroup table
+  await UserGroup.create({ userId: creatorId, groupId: group.groupId });
   return group;
 }
