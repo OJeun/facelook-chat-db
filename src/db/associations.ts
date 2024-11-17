@@ -9,18 +9,18 @@ export default function setupAssociations(): void {
   // Find all friends for a user (where userId in Friend matches the user's ID)
   User.hasMany(Friend, { foreignKey: "userId", as: "friends" });
   User.hasMany(Friend, { foreignKey: "friendId" });
-  User.hasMany(UserGroup, { foreignKey: "userId", as: "groups" });
+  User.hasMany(UserGroup, { foreignKey: "userId", as: "userGroups" });
   User.hasMany(Chat, { foreignKey: "userId", as: "chats" });
 
-  Group.hasMany(UserGroup, { foreignKey: "groupId", as: "users" });
-  Group.hasMany(Chat, { foreignKey: "groupId", as: "chats" });
+  Group.hasMany(UserGroup, { foreignKey: "groupId", as: "groups" });
+  Group.hasMany(Chat, { foreignKey: "groupId", as: "groupMessages" });
 
-  // Invitation relationships
-  // A user can receive many invitations
+  // Invitation relationships. A user can receive many invitations
   User.hasMany(Invitation, {
     foreignKey: "receiverId",
     as: "receivedInvitations",
   });
+
   // A user can send many invitations
   User.hasMany(Invitation, { foreignKey: "senderId", as: "sentInvitations" });
   // A group can have many invitations
@@ -30,12 +30,12 @@ export default function setupAssociations(): void {
   // Join table relationships
   Friend.belongsTo(User, { foreignKey: "userId" });
   UserGroup.belongsTo(User, { foreignKey: "userId" });
-  UserGroup.belongsTo(Group, { foreignKey: "groupId" });
+  UserGroup.belongsTo(Group, { foreignKey: "groupId", as: "group" });
   Chat.belongsTo(User, { foreignKey: "userId" });
-  Chat.belongsTo(Group, { foreignKey: "groupId" });
+  Chat.belongsTo(Group, { foreignKey: "groupId", as: "groupChat" });
 
   // Define inverse relationships for Invitation
   Invitation.belongsTo(User, { foreignKey: "receiverId", as: "invitee" });
-  Invitation.belongsTo(User, { foreignKey: "senderId", as: "inviter" });
+  Invitation.belongsTo(User, { foreignKey: "senderId", as: "invitor" });
   Invitation.belongsTo(Group, { foreignKey: "groupId", as: "invitedGroup" });
 }
