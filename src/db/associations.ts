@@ -28,7 +28,7 @@ export default function setupAssociations(): void {
   Chat.hasOne(Group, { foreignKey: "lastChatId", as: 'groupWithLastMessage', });
 
   // Join table relationships
-  Friend.belongsTo(User, { foreignKey: "userId" });
+  Friend.belongsTo(User, { foreignKey: 'friendId', as: 'friendUser' });
   UserGroup.belongsTo(User, { foreignKey: "userId" });
   UserGroup.belongsTo(Group, { foreignKey: "groupId", as: "group" });
   Chat.belongsTo(User, { foreignKey: "userId" });

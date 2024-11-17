@@ -8,13 +8,13 @@ export async function getAllFriendsByUserId(userId: number) {
     where: { userId },
     include: [{
         model: User,
-        as: 'friend',
+        as: 'friendUser',
         attributes: ['name', 'email'],
      }],
   });
 
    const response = friends.reduce((acc, curr) => {
-    const user = curr.get('friend') as User;
+    const user = curr.get('friendUser') as User;
     const friend: FriendResponseDto = {
         friendId: Number(curr.get('friendId')),
         name: user.get('name'),
