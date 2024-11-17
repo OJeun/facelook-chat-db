@@ -28,11 +28,32 @@ export async function getAllFriendsByUserId(userId: number) {
 }
 
 export async function addFriend(userId: number, friendId: number) {
-  await Friend.create({ userId, friendId });
+    // Check if the friendship already exists
+    const existingFriendship = await Friend.findOne({
+        where: { userId, friendId },
+    });
+
+    if (existingFriendship) {
+        return { message: 'Friendship already exists!' };
+    }
+
+    await Friend.create({ userId: userId, friendId: friendId });
+    await Friend.create({ userId: friendId, friendId: userId });
+    return { message: 'Friend added successfully!' };
 }
 
 export async function deleteFriend(userId: number, friendId: number) {
-    await Friend.destroy({
-        where: { userId, friendId },
+    const deletedUserFriendCount = await Friend.destroy({
+        where: { userId: userId, friendId: friendId },
     });
+
+    const deletedFriendUserCount = await Friend.destroy({
+        where: { userId: friendId, friendId: userId },
+    });
+
+    if (deletedUserFriendCount === 0 && deletedFriendUserCount === 0) {
+        return { message: 'Friend does not exist!' };
     }
+
+    return { message: 'Friend deleted successfully!' };
+}

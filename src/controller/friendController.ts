@@ -10,13 +10,13 @@ export async function getAllFriends(req: Request, res: Response) {
 export async function addFriend(req: Request, res: Response) {
     const userId = parseInt(req.body.userId);
     const friendId = parseInt(req.body.friendId);
-    await addFriendService(userId, friendId);
-    return res.json({ message: 'Friend added successfully!' });
+    const result = await addFriendService(userId, friendId);
+    return res.json(result);
 }
 
 export async function deleteFriend(req: Request, res: Response) {
     const userId = parseInt(req.body.userId);
     const friendId = parseInt(req.body.friendId);
-    await deleteFriendService(userId, friendId);
-    return res.json({ message: 'Friend deleted successfully!' });
+    const result = await deleteFriendService(userId, friendId);
+    return res.json(result);
 }
