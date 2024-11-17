@@ -10,29 +10,35 @@ export async function getAllInvitationsByReceiverId(receiverId: number) {
     include: [
       {
         model: User,
-        as: "sender",
-        attributes: ["name"],
+        as: "invitor",
+        attributes: ["name", "userId"],
       },
       {
         model: Group,
-        as: "group",
-        attributes: ["name"],
+        as: "invitedGroup",
+        attributes: ["groupName", "groupId"],
       },
     ],
   });
+
   const response = invitations.reduce((acc, curr) => {
-    const sender = curr.get("sender") as User;
-    const group = curr.get("group") as Group;
+    const sender = curr.get("invitor") as User; 
+    const group = curr.get("invitedGroup") as Group; 
+
     const invitation: InvitationResponseDto = {
       invitationId: Number(curr.get("invitationId")),
-      senderName: sender.get("name"),
-      groupName: group.get("name") as string,
+      senderId: Number(sender.get("userId")),
+      senderName: sender.get("name") as string,
+      groupName: group.get("groupName") as string, 
     };
+
     acc.push(invitation);
     return acc;
   }, [] as InvitationResponseDto[]);
+
   return response;
 }
+
 
 export async function sendInvitation(
   receiverId: number,
@@ -43,7 +49,8 @@ export async function sendInvitation(
 }
 
 export async function acceptInvitation(invitationId: number) {
-  const invitation = await Invitation.findByPk(invitationId);
+const invitation = await Invitation.findByPk(invitationId, { include: [] });
+
   if (!invitation) {
     throw new Error("Invitation not found");
   }
