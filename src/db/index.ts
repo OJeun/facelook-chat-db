@@ -10,20 +10,22 @@ import { initInvitation } from './models/invitation';
 import setupAssociations from './associations';
 
 dotenv.config();
+let sequelize: Sequelize;
 
 export function init(): Sequelize {
   const envConfig = process.env.NODE_ENV === 'production' ? config.production : config.development;
   const sequelize = new Sequelize(
     process.env.DB_NAME || 'default_db_name',
-    process.env.DB_USER || envConfig.username,
-    process.env.DB_PASSWORD || envConfig.password,
+    process.env.DB_USER || 'root',
+    process.env.DB_PASSWORD || 'password',
     {
-      host: process.env.DB_HOST || envConfig.host,
+      host: process.env.DB_HOST || 'localhost',
       dialect: 'mysql',
-      port: Number(process.env.DB_PORT) || envConfig.port,
-      timezone: process.env.DB_TIMEZONE || envConfig.timezone,
+      port: Number(process.env.DB_PORT) || 3306,
+      timezone: process.env.DB_TIMEZONE || '+09:00',
     }
   );
+  
 
   initUser(sequelize);
   initFriend(sequelize);
@@ -34,7 +36,7 @@ export function init(): Sequelize {
 
   setupAssociations();
 
-  sequelize.sync( {alter: true} ) // Use `force: true` only in development
+  sequelize.sync() 
   .then(() => {
     console.log("All models were synchronized successfully.");
   })
@@ -46,3 +48,4 @@ export function init(): Sequelize {
 }
 
 
+export { sequelize };
