@@ -3,7 +3,7 @@ import { DataTypes, Sequelize, Model } from 'sequelize';
 export class Group extends Model {
   public groupId!: number;
   public groupName!: string;
-  public lastChatId!: number;
+  public lastChatId!: number | null;
 }
 
 export function initGroup(sequelize: Sequelize): void {
@@ -20,8 +20,8 @@ export function initGroup(sequelize: Sequelize): void {
       },
       lastChatId: {
         type: DataTypes.INTEGER,
-        allowNull: false,
-        defaultValue: 0,
+        allowNull: true,
+        defaultValue: null,
       },
     },
     {
