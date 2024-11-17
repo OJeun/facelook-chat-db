@@ -15,8 +15,9 @@ export async function getLastMessageByGroupId(req: Request, res: Response) {
     return res.json({ message });
 }
 
+
 export async function createGroup(req: Request, res: Response) {
-    const { name } = req.body;
-    const group = await createGroupService(name);
+    const { name, creatorId } = req.body;
+    const group = await createGroupService(name, creatorId);
     return res.status(201).json({ message: 'Group created successfully', group });
 }
