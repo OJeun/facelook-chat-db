@@ -32,6 +32,7 @@ export function initUserGroup(sequelize: Sequelize): void {
     {
       sequelize,
       tableName: 'userGroup',
+      timestamps: false,
       engine: 'InnoDB',
       charset: 'utf8',
       freezeTableName: true,

@@ -41,6 +41,7 @@ export function initUser(sequelize:
       sequelize,
       tableName: 'user',
       engine: 'InnoDB',
+      timestamps: false,
       charset: 'utf8',
       freezeTableName: true,
       hooks: {
