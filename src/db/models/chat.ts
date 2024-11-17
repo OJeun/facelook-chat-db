@@ -31,12 +31,12 @@ export function initChat(sequelize: Sequelize): void {
       createdAt: {
         type: DataTypes.DATE,
         allowNull: false,
-        defaultValue: new Date(),
       },
     },
     {
       sequelize,
       tableName: 'chat',
+      timestamps: false,
       engine: 'InnoDB',
       charset: 'utf8',
       freezeTableName: true,

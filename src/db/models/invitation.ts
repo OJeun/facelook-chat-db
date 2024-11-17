@@ -31,6 +31,7 @@ export function initInvitation(sequelize: Sequelize): void {
     {
       sequelize,
       tableName: 'invitation',
+      timestamps: false,
       engine: 'InnoDB',
       charset: 'utf8',
       freezeTableName: true,

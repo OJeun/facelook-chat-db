@@ -26,6 +26,7 @@ export function initFriend(sequelize: Sequelize): void {
     {
       sequelize,
       tableName: 'friend',
+      timestamps: false,
       engine: 'InnoDB',
       charset: 'utf8',
       freezeTableName: true,
