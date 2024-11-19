@@ -1,11 +1,11 @@
 {
   "name": "comp4977db",
   "version": "1.0.0",
-"scripts": {
-  "start": "ts-node src/app.ts",
-  "migrate": "sequelize-cli db:migrate --config src/db/config/config.js --migrations-path src/db/migrations --models-path src/db/models"
-}
-,
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/app.js",
+    "migrate": "sequelize-cli db:migrate --config src/db/config/config.js --migrations-path src/db/migrations --models-path src/db/models"
+  },
   "dependencies": {
     "@types/node": "^22.9.0",
     "@types/sequelize": "^4.28.20",
