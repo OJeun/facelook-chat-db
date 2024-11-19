@@ -13,7 +13,6 @@ dotenv.config();
 let sequelize: Sequelize;
 
 export function init(): Sequelize {
-  const envConfig = process.env.NODE_ENV === 'production' ? config.production : config.development;
   const sequelize = new Sequelize(
     process.env.DB_NAME || 'default_db_name',
     process.env.DB_USER || 'root',
