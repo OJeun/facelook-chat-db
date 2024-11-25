@@ -9,6 +9,6 @@ export async function register(req: Request, res: Response) {
 
 export async function login(req: Request, res: Response) {
   const { email, password } = req.body;
-  const token = await loginUser(email, password);
-  return res.json({ message: 'Login successful', token });
+  const { token, user } = await loginUser(email, password);
+  return res.json({ message: 'Login successful', token, user });
 }
