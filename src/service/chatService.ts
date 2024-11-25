@@ -13,20 +13,16 @@ export async function getAllChatsByGroupId(groupId: number) {
 
 // lastMessage should be passed by the client side. If it is null, it will return the latest 20 chats
 // This is a different way of pagination. Instead of passing page number, we pass the last message date
-export async function get20ChatsByGroupId(groupId: number, lastMessageDate?: Date) {
-    const limit = 20;
-  
-    const chats = await Chat.findAll({
-      where: {
-        groupId,
-        ...(lastMessageDate && { createdAt: { [Op.lt]: lastMessageDate } }), // lastMessageDate가 있을 때만 적용
-      },
-      order: [['createdAt', 'DESC']], 
-      limit,
-    });
-  
-    return chats;
-  }
+export async function get20ChatsByOffset(groupId: number, offset: number, limit: number) {
+  const chats = await Chat.findAll({
+    where: { groupId },
+    order: [['createdAt', 'DESC']],
+    offset,
+    limit,
+  })
+
+  return chats;
+}
   
 export async function createSingleChat(chat: Partial<Chat>) {
   const newChat = await Chat.create({
