@@ -8,6 +8,15 @@ export async function registerUser(
   email: string,
   password: string
 ) {
+
+  const existUser = await User.findOne({
+    where: { email },
+  });
+
+  if (existUser) {
+    throw new Error("User already exists!");
+  }
+
   const user = await User.create({
     name,
     email,
