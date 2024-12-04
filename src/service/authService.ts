@@ -31,13 +31,13 @@ export async function loginUser(email: string, password: string) {
   });
 
   if (!user) {
-    throw new Error("User not found!");
+    return {"message": "User not found!"};
   }
 
   const passwordIsValid = await bcrypt.compare(password, user.password);
 
   if (!passwordIsValid) {
-    throw new Error("Invalid password!");
+    return {"message": "Invalid Password!"};
   }
 
   const secret = process.env.JWT_SECRET || 'default_secret';
