@@ -11,5 +11,4 @@ export async function login(req: Request, res: Response) {
   const { email, password } = req.body;
   const { token, user } = await loginUser(email, password);
   return res.json({ message: 'Login successful', token, user });
-  // return res.json({ message: 'Login successful', token });
 }

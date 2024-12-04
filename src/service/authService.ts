@@ -31,13 +31,13 @@ export async function loginUser(email: string, password: string) {
   });
 
   if (!user) {
-    return Error("Invalid email or password!");
+    throw new Error("Invalid email or password!");
   }
 
   const passwordIsValid = await bcrypt.compare(password, user.password);
 
   if (!passwordIsValid) {
-    return Error("Invalid email or password!");
+    throw Error("Invalid email or password!");
   }
 
   const secret = process.env.JWT_SECRET || 'default_secret';
