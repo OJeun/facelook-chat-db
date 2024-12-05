@@ -95,5 +95,5 @@ export async function getAllFriendRequestsByReceiverId(receiverId: number) {
     };
   });
 
-  return response;
+  return { friends: response };
 }
