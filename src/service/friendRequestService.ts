@@ -81,7 +81,7 @@ export async function getAllFriendRequestsByReceiverId(receiverId: number) {
   });
 
   if (!requests.length) {
-    return [];
+    return { friends: [] };
   }
 
   const response = requests.map((request) => {
