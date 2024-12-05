@@ -10,8 +10,8 @@ export async function getUserDatabyUserId(userId: number) {
     userId: user.userId,
     name: user.name,
     email: user.email,
-    acheivementPoint: user.achievementPoint
-  }
+    achievementPoint: user.achievementPoint,
+  };
   return userData;
 }
 

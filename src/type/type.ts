@@ -15,5 +15,5 @@ export interface UserDataResponseDto {
     userId: number,
     name: string,
     email: string,
-    acheivementPoint: number,
+    achievementPoint: number,
 }
