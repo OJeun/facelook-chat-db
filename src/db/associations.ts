@@ -4,6 +4,7 @@ import { Group } from "./models/group";
 import { UserGroup } from "./models/userGroup";
 import { Chat } from "./models/chat";
 import { Invitation } from "./models/invitation";
+import { FriendRequest } from "./models/friendRequest";
 
 export default function setupAssociations(): void {
   // Find all friends for a user (where userId in Friend matches the user's ID)
@@ -33,6 +34,7 @@ export default function setupAssociations(): void {
   UserGroup.belongsTo(Group, { foreignKey: "groupId", as: "group" });
   Chat.belongsTo(User, { foreignKey: "userId" });
   Chat.belongsTo(Group, { foreignKey: "groupId", as: "groupChat" });
+  FriendRequest.belongsTo(User, { foreignKey: 'senderId', as: 'sender' });
 
   // Define inverse relationships for Invitation
   Invitation.belongsTo(User, { foreignKey: "receiverId", as: "invitee" });

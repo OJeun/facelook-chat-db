@@ -6,6 +6,7 @@ import { initFriend } from './models/friend';
 import { initGroup } from './models/group';
 import { initUserGroup } from './models/userGroup';
 import { initChat } from './models/chat';
+import { initFriendRequest } from './models/friendRequest';
 import { initInvitation } from './models/invitation';
 import setupAssociations from './associations';
 
@@ -32,6 +33,7 @@ export function init(): Sequelize {
   initUserGroup(sequelize);
   initChat(sequelize);
   initInvitation(sequelize);
+  initFriendRequest(sequelize);
 
   setupAssociations();
 
