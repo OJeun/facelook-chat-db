@@ -81,7 +81,7 @@ export async function getAllFriendRequestsByReceiverId(receiverId: number) {
   });
 
   if (!requests.length) {
-    return { message: 'No friend requests found' };
+    return [];
   }
 
   const response = requests.map((request) => {
