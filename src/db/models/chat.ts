@@ -4,6 +4,7 @@ export class Chat extends Model {
   public chatId!: number;
   public groupId!: number;
   public senderId!: string;
+  public senderName!: string;
   public message!: string;
   public createdAt!: Date;
 }
@@ -13,7 +14,6 @@ export function initChat(sequelize: Sequelize): void {
     {
       chatId: {
         type: DataTypes.INTEGER,
-        autoIncrement: true,
         primaryKey: true,
       },
       groupId: {
@@ -21,6 +21,10 @@ export function initChat(sequelize: Sequelize): void {
         allowNull: false,
       },
       senderId: {
+        type: DataTypes.STRING(30),
+        allowNull: false,
+      },
+      senderName: {
         type: DataTypes.STRING(30),
         allowNull: false,
       },

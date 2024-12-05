@@ -40,6 +40,7 @@ export async function saveChatMessages(chatList: Partial<Chat>[]) {
   const validChats = chatList.map((chat) => ({
     groupId: chat.groupId,
     senderId: chat.senderId,
+    senderName: chat.senderName,
     message: chat.message,
     createdAt: chat.createdAt,
   }));
@@ -67,7 +68,6 @@ export async function saveLastMessageToGroup(chatList: Chat[]) {
 
   // Update the lastChatId in the group table
   group.lastChatId = lastMessage.chatId;
-  console.log("Group", group);
   await group.save();
 }
 
