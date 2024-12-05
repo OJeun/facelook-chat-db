@@ -1,7 +1,7 @@
 import { DataTypes, Sequelize, Model } from 'sequelize';
 
 export class Chat extends Model {
-  public chatId!: number;
+  public chatId!: string;
   public groupId!: number;
   public senderId!: string;
   public senderName!: string;
@@ -13,7 +13,7 @@ export function initChat(sequelize: Sequelize): void {
   Chat.init(
     {
       chatId: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING(30),
         primaryKey: true,
       },
       groupId: {
