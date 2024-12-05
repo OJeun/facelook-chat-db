@@ -57,7 +57,7 @@ export async function saveLastMessageToGroup(chatList: Chat[]) {
   console.log("LastMessage", lastMessage);
 
   if (!lastMessage) {
-    throw new Error("No chat messages provided");
+    throw new Error("No chat messages provided!!");
   }
 
   // Find the group by groupId
