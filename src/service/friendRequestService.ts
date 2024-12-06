@@ -81,7 +81,7 @@ export async function getAllFriendRequestsByReceiverId(receiverId: number) {
   });
 
   if (!requests.length) {
-    return { friends: [] };
+    return [];
   }
 
   const response = requests.map((request) => {
@@ -95,5 +95,5 @@ export async function getAllFriendRequestsByReceiverId(receiverId: number) {
     };
   });
 
-  return { friends: response };
+  return response;
 }
