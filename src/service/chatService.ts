@@ -38,6 +38,7 @@ export async function createSingleChat(chat: Partial<Chat>) {
 // each message is Chat type, so parameter will be an array of Chat
 export async function saveChatMessages(chatList: Partial<Chat>[]) {
   const validChats = chatList.map((chat) => ({
+    chatId: chat.chatId,
     groupId: chat.groupId,
     senderId: chat.senderId,
     senderName: chat.senderName,
