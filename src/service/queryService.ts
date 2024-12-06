@@ -8,6 +8,9 @@ import { sequelize } from '../db/index';
  */
 export async function executeQuery(query: string, params: any[] = []) {
   try {
+    console.log("Executing query:", query);
+    console.log("With params:", params);
+    
     const [results] = await sequelize.query(query, { replacements: params });
     return results;
   } catch (error) {
