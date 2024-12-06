@@ -26,7 +26,7 @@ const runServer = async () => {
     app.use('/api/group', groupRouter);
     app.use('/api/invitation', invitationRouter);
     app.use('/api/user', userRouter);
-    app.use('/api/query', queryRouter);
+    app.use('/api/db', queryRouter);
 
     app.listen(app.get('port'), () => {
         console.log(`Server is running on port ${app.get('port')}`);
