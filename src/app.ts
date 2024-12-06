@@ -8,6 +8,7 @@ import friendRouter from './routes/friend';
 import groupRouter from './routes/group';
 import invitationRouter from './routes/invitation';
 import userRouter from './routes/user';
+import queryRouter from './routes/query';
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ const runServer = async () => {
     app.use('/api/group', groupRouter);
     app.use('/api/invitation', invitationRouter);
     app.use('/api/user', userRouter);
+    app.use('/api/query', queryRouter);
 
     app.listen(app.get('port'), () => {
         console.log(`Server is running on port ${app.get('port')}`);
